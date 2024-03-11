@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Google Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Style the search bar and buttons */
+    .search-container {
+      margin: 20px auto;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .search-box {
+      width: 80%;
+      border: 2px solid #ccc;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+      margin-bottom: 10px;
+    }
+
+    .search-box:focus {
+      border-color: #4CAF50;
+      box-shadow: 0 0 8px 0 rgba(76, 175, 80, 0.4);
+    }
+
+    .search-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .search-button:hover {
+      background-color: #3e8e41;
+    }
+
+    /* Style the three buttons */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .indexing,
+    .change-service,
+    .urlaponta-button {
+      background-color: #f2f2f2;
+      border: none;
+      color: black;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-right: 10px;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+
+    .indexing:hover,
+    .change-service:hover,
+    .urlaponta-button:hover {
+      background-color: #ddd;
+    }
+
+    .change-service {
+      background-color: red;
+      color: white;
+    }
+
+    .change-service:hover {
+      background-color: #c30000;
+    }
+  </style>
+</head>
+<body>
+  <div class="search-container">
+    <form th:action="@{/}" th:object="${GenericString}" method="post">
+      <input type="text" placeholder="Search Google" class="search-box" name="genericString" required>
+      <button type="submit" class="search-button">Search</button>
+    </form>
+    <div class="button-container">
+      <button class="indexing" onclick="redirectToIndex()">Indexing</button>
+      <button class="urlaponta-button" onclick="redirectToApontaURL()">URLaponta</button>
+      <form th:action="@{/hackernewstopstories}" th:object="${GenericString}" method="post">
+        <input type="text" placeholder="Add Hacking" class="search-box" name="genericString" required>
+        <button type="submit" class="change-service">Hacker News</button>
+      </form>
+      <form th:action="@{/tuasStories}" th:object="${GenericString}" method="post">
+        <input type="text" placeholder="User" class="search-box" name="genericString" required>
+        <button type="submit" class="change-service">Hack</button>
+      </form>
+    </div>
+    <script>
+      function redirectToIndex() {
+        window.location.href = "/IndexURL";
+      }
+      function redirectToApontaURL() {
+        window.location.href = "/apontaURL";
+      }
+    </script>
+  </div>
+</body>
+</html>
